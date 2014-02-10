@@ -1,0 +1,23 @@
+{
+  "name": "dataviz-tangible",
+  "version": "0.0.1",
+  "description": "Module facilitant l'accès a diverses API",
+  "author": "Xavier Seignard <xavier.seignard@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xseignard/dataviz-tangible.git"
+  },
+  "main": "./datas",
+  "homepage": "https://github.com/xseignard/dataviz-tangible",
+  "bugs": {
+    "url": "https://github.com/xseignard/dataviz-tangible/issues"
+  },
+  "dependencies": {
+    "forecast": "~0.1.1",
+    "node-geocoder": "~1.2.0",
+    "ntwitter": "~0.5.0",
+    "yahoo-finance": "~0.1.0",
+    "cheerio": "~0.13.1"
+  }
+}
