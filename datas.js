@@ -19,7 +19,8 @@ var datasEventNames = {
 	nouvelobs: 'nouvelobs',
 	liberation: 'liberation',
 	humanite: 'humanite',
-	jcdecaux: 'jcdecaux'
+	jcdecaux: 'jcdecaux',
+	pollution: 'pollution'
 };
 
 var Datas = function(opts) {
@@ -214,6 +215,27 @@ Datas.prototype.humanite = function() {
 Datas.prototype.velosJcdecaux = function(town) {
 	var url = 'https://api.jcdecaux.com/vls/v1/stations?contract=' + town + '&apiKey=' + this.jcdecaux;
 	this.requestJSON(url, datasEventNames.jcdecaux);
+};
+
+Datas.prototype.pollution = function(town) {
+	var url;
+	switch (town) {
+		case 'Paris':
+			url = 'http://aqicn.org/city/france/paris/paris-centre/';
+			break;
+		case 'Rennes':
+			url = 'http://aqicn.org/city/france/bretagne/rennes/laennec/';
+			break;
+		case 'Shanghai':
+			url = 'http://aqicn.org/city/shanghai/';
+			break;
+	}
+	var parseFunction = function(res) {
+		var $ = cheerio.load(res);
+		var aqi = $('.aqivalue').first().text();
+		return {town:town, aqi: parseInt(aqi)};
+	};
+	this.requestHeadlines(url, datasEventNames.lemonde, parseFunction);
 };
 
 module.exports = Datas;

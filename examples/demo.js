@@ -15,7 +15,8 @@ var datas = new Datas({
 });
 
 datas.on('weather', function(data) {
-	console.log(data.currently.temperature);
+	//console.log(data.currently.temperature);
+	console.dir(data);
 });
 
 datas.on('twitterSample', function(data) {
@@ -72,6 +73,10 @@ datas.on('jcdecaux', function(data) {
 	console.log(data);
 });
 
+datas.on('pollution', function(data) {
+	console.log(data);
+});
+
 
 //datas.weather('Nantes');
 //datas.twitterSample();
@@ -83,5 +88,7 @@ datas.on('jcdecaux', function(data) {
 //datas.nouvelobs();
 //datas.liberation();
 //datas.humanite();
-
-datas.velosJcdecaux('Nantes');
+//datas.velosJcdecaux('Nantes');
+datas.pollution('Paris');
+datas.pollution('Shanghai');
+datas.pollution('Rennes');
