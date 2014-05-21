@@ -12,6 +12,7 @@
 - liberation: récupère les dernières brèves
 - humanite: récupère les dernières brèves
 - jcdecaux: requête la disponibilité des vélos
+- aqi: air quality index
 
 ### Nécessité d'inscrption aux services
 
