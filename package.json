@@ -1,6 +1,6 @@
 {
   "name": "dataviz-tangible",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Module facilitant l'accès a diverses API",
   "author": "Xavier Seignard <xavier.seignard@gmail.com>",
   "license": "MIT",
