@@ -235,7 +235,7 @@ Datas.prototype.pollution = function(town) {
 		var aqi = $('.aqivalue').first().text();
 		return {town:town, aqi: parseInt(aqi)};
 	};
-	this.requestHeadlines(url, datasEventNames.lemonde, parseFunction);
+	this.requestHeadlines(url, datasEventNames.pollution, parseFunction);
 };
 
 module.exports = Datas;
