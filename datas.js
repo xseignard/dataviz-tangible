@@ -229,11 +229,26 @@ Datas.prototype.pollution = function(town) {
 		case 'Shanghai':
 			url = 'http://aqicn.org/city/shanghai/';
 			break;
+		case 'Beijing':
+			url = 'http://aqicn.org/city/beijing/';
+			break;
+		case 'Nantes':
+			url = 'http://aqicn.org/city/france/loire/nantes/victor-hugo/';
+			break;
 	}
+	var particles = ['pm25', 'pm10', 'o3', 'no2', 'co'];
 	var parseFunction = function(res) {
 		var $ = cheerio.load(res);
-		var aqi = $('.aqivalue').first().text();
-		return {town:town, aqi: parseInt(aqi)};
+		var pollution = {};
+		pollution.aqi = parseInt($('.aqivalue').first().text());
+		particles.forEach(function(particle) {
+			var obj = {};
+			obj.current = parseInt($('#cur_' + particle).first().text());
+			obj.min = parseInt($('#min_' + particle).first().text());
+			obj.max = parseInt($('#max_' + particle).first().text());
+			pollution[particle] = obj;
+		});
+		return {town:town, pollution: pollution};
 	};
 	this.requestHeadlines(url, datasEventNames.pollution, parseFunction);
 };

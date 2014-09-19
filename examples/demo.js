@@ -1,14 +1,17 @@
 var Datas = require('../datas'),
-	tronconsNantes = require('./tronconsNantes.json');
+	tronconsNantes = require('./tronconsNantes.json'),
+	osc = require('node-osc');
+
+var client = new osc.Client('127.0.0.1', 3333);
 
 var datas = new Datas({
 	forecast: 'bbe6179938ef0866087e02efb6cb2e0c',
 	google: 'AIzaSyBmGs_cJWV5LY05kfcaI3PjcDRnnRgghHY',
 	twitter: {
-		consumer_key: 'WQ7HAOeSjLMcI3foYk8LQ',
-		consumer_secret: 'kfvxfs88CNQg7XbgYCJ8Uk7LA782lRGP3WCBSd5XnSc',
-		access_token_key: '102975831-EHTdgy8BGcHJ2isDi0u98K8eZGCHH9WwNxteW7oX',
-		access_token_secret: 'OYQ9rXSnbRtXQNnrGrZkLfwFaZSiFP5r2Ny9EEp6Z0SYg'
+		consumer_key: 'DaHr8b09VKTdaKxAdI1fxb7Gl',
+		consumer_secret: 'lRbyJjH69CKlgxJmJWCX2b35dlbpHmSZbOQQLW9i1r0pZnhGIb',
+		access_token_key: '102975831-6AR97bz9EbfVrS4W7EO9XFZ3bIgcIydVtHek1y4N',
+		access_token_secret: 'Et1611x7YrU2GV1LtPg3VJoKZ0fjA8IDMrlEdEF7Bh7wa'
 	},
 	nantes: '51G0VBM9453IF7R',
 	jcdecaux: 'ee209151088f8b12d6ccc22bc115588f51615c14'
@@ -50,7 +53,13 @@ datas.on('circulationNantes', function(data) {
 });
 
 datas.on('parkingNantes', function(data) {
-	console.log(data.opendata.answer.data.Groupes_Parking.Groupe_Parking);
+	var parkings = data.opendata.answer.data.Groupes_Parking.Groupe_Parking;
+	var placesDispo = 0;
+	parkings.forEach(function(parking) {
+		placesDispo += parseInt(parking.Grp_disponible, 10);
+	});
+	console.log(placesDispo);
+	//client.send('/parkingNantes', JSON.stringify(data.opendata.answer.data.Groupes_Parking.Groupe_Parking));
 });
 
 datas.on('lemonde', function(data) {
@@ -75,20 +84,21 @@ datas.on('jcdecaux', function(data) {
 
 datas.on('pollution', function(data) {
 	console.log(data);
+	client.send('/pollution', JSON.stringify(data));
 });
 
 
 //datas.weather('Nantes');
 //datas.twitterSample();
-//datas.twitterTrack(['dataviz', 'datavisualisation']);
+//datas.twitterTrack(['fun']);
 //datas.finance();
 //datas.circulationNantes();
-//datas.parkingNantes();
+datas.parkingNantes();
 //datas.lemonde();
 //datas.nouvelobs();
 //datas.liberation();
 //datas.humanite();
-//datas.velosJcdecaux('Nantes');
-datas.pollution('Paris');
-datas.pollution('Shanghai');
-datas.pollution('Rennes');
+//datas.velosJcdecaux('Marseille'); // nantes, paris, lyon, marseille
+//datas.pollution('Nantes');
+//datas.pollution('Shanghai');
+//datas.pollution('Beijing');
