@@ -2,7 +2,7 @@ var Datas = require('../datas'),
 	tronconsNantes = require('./tronconsNantes.json'),
 	osc = require('node-osc');
 
-var client = new osc.Client('127.0.0.1', 3333);
+var client = new osc.Client('10.0.5.159', 3333);
 
 var datas = new Datas({
 	forecast: 'bbe6179938ef0866087e02efb6cb2e0c',
@@ -19,7 +19,8 @@ var datas = new Datas({
 
 datas.on('weather', function(data) {
 	//console.log(data.currently.temperature);
-	console.dir(data);
+	console.dir(data.currently);
+	client.send('/weather', JSON.stringify(data.currently));
 });
 
 datas.on('twitterSample', function(data) {
@@ -93,12 +94,22 @@ datas.on('pollution', function(data) {
 //datas.twitterTrack(['fun']);
 //datas.finance();
 //datas.circulationNantes();
-datas.parkingNantes();
+//datas.parkingNantes();
 //datas.lemonde();
 //datas.nouvelobs();
 //datas.liberation();
 //datas.humanite();
 //datas.velosJcdecaux('Marseille'); // nantes, paris, lyon, marseille
-//datas.pollution('Nantes');
-//datas.pollution('Shanghai');
-//datas.pollution('Beijing');
+var truc = function() {
+	datas.pollution('Nantes');
+	datas.weather('Nantes');
+	/*datas.pollution('Shanghai');
+	datas.weather('Shanghai');
+	datas.pollution('Beijing');
+	datas.weather('Beijing');
+	datas.pollution('Paris');
+	datas.weather('Paris');*/
+};
+
+setInterval(truc, 5000);
+
