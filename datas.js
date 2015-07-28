@@ -243,14 +243,29 @@ Datas.prototype.pollution = function(town) {
 		pollution.aqi = parseInt($('.aqivalue').first().text());
 		particles.forEach(function(particle) {
 			var obj = {};
-			obj.current = parseInt($('#cur_' + particle).first().text());
-			obj.min = parseInt($('#min_' + particle).first().text());
-			obj.max = parseInt($('#max_' + particle).first().text());
+			obj.current = parseInt($('#cur_' + particle).first().text()) || 'unavailable';
+			obj.min = parseInt($('#min_' + particle).first().text()) || 'unavailable';
+			obj.max = parseInt($('#max_' + particle).first().text()) || 'unavailable';
 			pollution[particle] = obj;
 		});
 		return {town:town, pollution: pollution};
 	};
 	this.requestHeadlines(url, datasEventNames.pollution, parseFunction);
+};
+
+Datas.prototype.ratp = function(station, ligne, sens) {
+	var url = 'http://www.ratp.fr/horaires/fr/ratp/metro/prochains_passages/PP/' + station + '/' + ligne + '/' + sens;
+	var parseFunction = function(res) {
+		var $ = cheerio.load(res);
+		var rows = $('#prochains_passages > .metro > table > tbody > tr');
+		var result = [];
+		for (var i = 0; i < rows.length; i++) {
+			var delai = $(rows[i]).children().eq(1).text();
+			if (parseInt(delai[0])) result.push(delai[0]);
+		};
+		return {result: result};
+	};
+	this.requestHeadlines(url, 'ratp', parseFunction);
 };
 
 module.exports = Datas;

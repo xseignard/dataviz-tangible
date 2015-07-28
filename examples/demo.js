@@ -89,6 +89,10 @@ datas.on('pollution', function(data) {
 });
 
 
+datas.on('ratp', function(data) {
+	console.log(data);
+});
+
 //datas.weather('Nantes');
 //datas.twitterSample();
 //datas.twitterTrack(['fun']);
@@ -100,16 +104,13 @@ datas.on('pollution', function(data) {
 //datas.liberation();
 //datas.humanite();
 //datas.velosJcdecaux('Marseille'); // nantes, paris, lyon, marseille
-var truc = function() {
-	datas.pollution('Nantes');
-	datas.weather('Nantes');
-	/*datas.pollution('Shanghai');
-	datas.weather('Shanghai');
-	datas.pollution('Beijing');
-	datas.weather('Beijing');
-	datas.pollution('Paris');
-	datas.weather('Paris');*/
-};
-
-setInterval(truc, 5000);
-
+//datas.weather('Nantes');
+//datas.weather('Shanghai');
+//datas.weather('Beijing');
+//datas.weather('Paris');
+//datas.ratp('barbes+rochechouart', 2, 'A');
+datas.pollution('Nantes');
+datas.pollution('Rennes');
+datas.pollution('Shanghai');
+datas.pollution('Beijing');
+datas.pollution('Paris');
