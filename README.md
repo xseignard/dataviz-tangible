@@ -13,6 +13,7 @@
 - humanite: récupère les dernières brèves
 - jcdecaux: requête la disponibilité des vélos
 - aqi: air quality index
+- ratp: récupère le prochain passage à l'arrêt
 
 ### Nécessité d'inscrption aux services
 
