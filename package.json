@@ -14,10 +14,11 @@
     "url": "https://github.com/xseignard/dataviz-tangible/issues"
   },
   "dependencies": {
+    "cheerio": "~0.13.1",
     "forecast": "~0.1.1",
     "node-geocoder": "~1.2.0",
+    "node-osc": "^1.1.0",
     "ntwitter": "~0.5.0",
-    "yahoo-finance": "~0.1.0",
-    "cheerio": "~0.13.1"
+    "yahoo-finance": "~0.1.0"
   }
 }
