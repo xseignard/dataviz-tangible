@@ -30,7 +30,7 @@ Créer un dossier de projet, puis installer ce module: `npm install dataviz-tang
 Créer l'objet de configuration d'accès aux services :
 
 ```javascript
-var Datas = require('../datas');
+var Datas = require('dataviz-tangible');
 
 var datas = new Datas({
 	forecast: 'myAPIKey',
