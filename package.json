@@ -1,6 +1,6 @@
 {
   "name": "dataviz-tangible",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Module facilitant l'accès a diverses API",
   "author": "Xavier Seignard <xavier.seignard@gmail.com>",
   "license": "MIT",
@@ -20,5 +20,6 @@
     "node-osc": "^1.1.0",
     "ntwitter": "~0.5.0",
     "yahoo-finance": "~0.1.0"
-  }
+  },
+  "scripts": {}
 }
